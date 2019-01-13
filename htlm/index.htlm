@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Matières en première et seconde</title>
+	<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+	<label>Choisissez vos matières:</label>
+	<form>
+		<div id="chooseSubjectForm">
+			<!-- add automatly checkbox -->
+		</div>
+	</form>
+	<hr>
+
+	<script type="text/javascript" src="../js/index.js"></script>
+</body>
+</html>
