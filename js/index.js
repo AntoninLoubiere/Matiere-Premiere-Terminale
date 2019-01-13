@@ -1,13 +1,9 @@
-let listSubject = ['Art', 'Ecologie, agronomie et territoires', 'Histoire geographie', 
-'Humanite, litterature et philosophie', 'Langues et litteratures etrangere: anglais', 
-'Langues et litteratures etrangere: allemand', 'Langues et litteratures etrangere: espagnol',
-'Langues et litteratures etrangere: italien', 'Mathematiques', 
-'Numerique et sciences informatique', 'SVT', 'Sciences de l\'ingenieur', 
-'Sciences economique et sociales', 'Physique chimie'];
+let listSubject = ['Mathématiques', 'LCA Latin Grec', 'Histoire géographie géopolitique et sciences politiques', 'Humanité, littérature et philosophie',
+            'Langue et littérature étrangère Anglais', 'Langue et littérature étrangère Espagnol',  'Langue et littérature étrangère Allemand','Langue et littérature étrangère Italien','Sciences économique et sociales', 
+               'Physique chimie','SVT','Biologie-écologie','Numérique et science informatique ','Science de l’ingénieur','Cinéma-audiovisuel ','Histoire des arts','Théâtre','Musique','Arts du cirque','Danse','Arts plastiques'];
 
-let listToDontRepeat = [['Langues et litteratures etrangere: anglais', 
-'Langues et litteratures etrangere: allemand', 'Langues et litteratures etrangere: espagnol',
-'Langues et litteratures etrangere: italien']];
+let listToDontRepeat = [['Langue et littérature étrangère Espagnol', 'Langue et littérature étrangère Allemand', 'Langue et littérature étrangère Anglais','Langue et littérature étrangère Italien'],
+						['Cinéma-audiovisuel ','Histoire des arts','Théâtre','Musique','Arts du cirque','Danse','Arts plastiques']];
 
 let listCheckbox = {};
 
@@ -205,7 +201,6 @@ function getChoicePremiere() {
 				}
 
 				if (_continue) {
-					console.log("continue");
 					continue;
 				}
 
@@ -241,6 +236,17 @@ function isIn(value, list) {
 function updateChoice() {
 	let numberChoicePremiere = document.getElementById("premiereNumberChoice");
 	let numberChoiceTerminal = document.getElementById("terminalNumberChoice");
+
+	if (typeof(Worker) !== "undefined") {
+	    if (typeof(w) == "undefined") {
+	      w = new Worker("demo_workers.js");
+	    }
+    w.onmessage = function(event) {
+      document.getElementById("result").innerHTML = event.data;
+    };
+  } else {
+    document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
+  }
 
 	numberChoicePremiere.innerHTML = getChoicePremiere().length;
 	numberChoiceTerminal.innerHTML = getChoiceTerminal().length;
