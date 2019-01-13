@@ -13,12 +13,16 @@ function createCheckboxInSubjectForm() {
 		cb.type = 'checkbox';
 		cb.name = subject;
 		cb.id = "idCheckbox" + subject;
+		cb.checked = true;
 		form.appendChild(cb);
 
 		let label = document.createElement('label')
 		label.htmlFor = "idLabel" + subject;
 		label.appendChild(document.createTextNode(subject));
 		form.appendChild(label);
+
+		let br = document.createElement('br')
+		form.appendChild(br)
 	}
 }
 
