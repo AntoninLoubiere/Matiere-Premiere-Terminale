@@ -1,9 +1,13 @@
 let listSubject = ['Art', 'Ecologie, agronomie et territoires', 'Histoire geographie', 
-'Humanite, litterature et philosophie', 'Langues et literatures etrangere', 'Mathematiques', 
+'Humanite, litterature et philosophie', 'Langues et litteratures etrangere: anglais', 
+'Langues et litteratures etrangere: allemand', 'Langues et litteratures etrangere: espagnol',
+'Langues et litteratures etrangere: italien', 'Mathematiques', 
 'Numerique et sciences informatique', 'SVT', 'Sciences de l\'ingenieur', 
 'Sciences economique et sociales', 'Physique chimie'];
 
-let listToDontRepeat = [["Langues et literatures etrangere"]];
+let listToDontRepeat = [['Langues et litteratures etrangere: anglais', 
+'Langues et litteratures etrangere: allemand', 'Langues et litteratures etrangere: espagnol',
+'Langues et litteratures etrangere: italien']];
 
 let listCheckbox = {};
 
@@ -18,7 +22,6 @@ function createCheckboxInSubjectForm() {
 		cb.name = subject;
 		cb.id = "idCheckbox" + subject;
 		cb.checked = true;
-		console.log(cb);
 		cb.onclick = updateChoice
 		form.appendChild(cb);
 		listCheckbox[subject] = cb;
@@ -58,6 +61,7 @@ function getChoiceTerminal() {
 			// verify don't repeat
 			for (let iDontRepeat = 0; iDontRepeat < listToDontRepeat.length; iDontRepeat++) {
 				if (choice1 in listToDontRepeat[iDontRepeat] && choice2 in listToDontRepeat[iDontRepeat]) {
+					console.log('oui')
 					_continue = true;
 					break;
 				}
@@ -75,6 +79,7 @@ function getChoiceTerminal() {
 
 			for (let iChoice = 0; iChoice < listChoice.length; iChoice++) {
 				if (listChoice[iChoice].toString() === choice.toString()) {
+					console.log('oui')
 					alreadyIn = true;
 					break;
 				}
@@ -113,7 +118,7 @@ function getChoiceTerminal() {
 
 			// verify don't repeat
 			for (let iDontRepeat = 0; iDontRepeat < listToDontRepeat.length; iDontRepeat++) {
-				if (choice1 in listToDontRepeat[iDontRepeat] && choice2 in listToDontRepeat[iDontRepeat]) {
+				if (isIn(choice1, listToDontRepeat[iDontRepeat]) && isIn(choice2, listToDontRepeat[iDontRepeat])) {
 					_continue = true;
 					break;
 				}
@@ -169,7 +174,7 @@ function getChoicePremiere() {
 
 			// verify don't repeat
 			for (let iDontRepeat = 0; iDontRepeat < listToDontRepeat.length; iDontRepeat++) {
-				if (choice1 in listToDontRepeat[iDontRepeat] && choice2 in listToDontRepeat[iDontRepeat]) {
+				if (isIn(choice1, listToDontRepeat[iDontRepeat]) && isIn(choice2, listToDontRepeat[iDontRepeat])) {
 					_continue = true;
 					break;
 				}
@@ -190,14 +195,17 @@ function getChoicePremiere() {
 
 				// verify don't repeat
 				for (let iDontRepeat = 0; iDontRepeat < listToDontRepeat.length; iDontRepeat++) {
-					if ((choice1 in listToDontRepeat[iDontRepeat] && choice3 in listToDontRepeat[iDontRepeat]) ||
-							(choice2 in listToDontRepeat[iDontRepeat] && choice3 in listToDontRepeat[iDontRepeat]) ) {
+					// console.log(choice1);
+					// console.log(isIn(choice1, listToDontRepeat[iDontRepeat]));
+					if ((isIn(choice1, listToDontRepeat[iDontRepeat]) && isIn(choice3, listToDontRepeat[iDontRepeat])) ||
+							(isIn(choice2, listToDontRepeat[iDontRepeat]) && isIn(choice3, listToDontRepeat[iDontRepeat])) ) {
 						_continue = true;
 						break;
 					}
 				}
 
 				if (_continue) {
+					console.log("continue");
 					continue;
 				}
 
@@ -223,6 +231,10 @@ function getChoicePremiere() {
 	}
 
 	return listChoice;
+}
+
+function isIn(value, list) {
+	return list.indexOf(value) >= 0;
 }
 
 
