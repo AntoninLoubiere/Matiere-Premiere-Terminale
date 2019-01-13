@@ -18,6 +18,8 @@ function createCheckboxInSubjectForm() {
 		cb.name = subject;
 		cb.id = "idCheckbox" + subject;
 		cb.checked = true;
+		console.log(cb);
+		cb.onclick = updateChoice
 		form.appendChild(cb);
 		listCheckbox[subject] = cb;
 
@@ -225,9 +227,13 @@ function getChoicePremiere() {
 
 
 function updateChoice() {
-	
+	let numberChoicePremiere = document.getElementById("premiereNumberChoice");
+	let numberChoiceTerminal = document.getElementById("terminalNumberChoice");
+
+	numberChoicePremiere.innerHTML = getChoicePremiere().length;
+	numberChoiceTerminal.innerHTML = getChoiceTerminal().length;
 }
 
 
 createCheckboxInSubjectForm();
-console.log(getChoicePremiere());
+updateChoice();
