@@ -56,7 +56,7 @@ function getChoiceTerminal() {
 
 			// verify don't repeat
 			for (let iDontRepeat = 0; iDontRepeat < listToDontRepeat.length; iDontRepeat++) {
-				if (choice1 in listToDontRepeat[iDontRepeat] && choice2 in listToDontRepeat[iDontRepeat]) {
+				if (isIn(choice1, listToDontRepeat[iDontRepeat]) && isIn(choice2, listToDontRepeat[iDontRepeat])) {
 					_continue = true;
 					break;
 				}
