@@ -1,13 +1,9 @@
-let listSubject = ['Art', 'Ecologie, agronomie et territoires', 'Histoire geographie', 
-'Humanite, litterature et philosophie', 'Langues et litteratures etrangere: anglais', 
-'Langues et litteratures etrangere: allemand', 'Langues et litteratures etrangere: espagnol',
-'Langues et litteratures etrangere: italien', 'Mathematiques', 
-'Numerique et sciences informatique', 'SVT', 'Sciences de l\'ingenieur', 
-'Sciences economique et sociales', 'Physique chimie'];
+let listSubject = ['Mathématiques', 'LCA Latin Grec', 'Histoire géographie géopolitique et sciences politiques', 'Humanité, littérature et philosophie',
+            'Langue et littérature étrangère Anglais', 'Langue et littérature étrangère Espagnol',  'Langue et littérature étrangère Allemand','Langue et littérature étrangère Italien','Sciences économique et sociales', 
+               'Physique chimie','SVT','Biologie-écologie','Numérique et science informatique ','Science de l’ingénieur','Cinéma-audiovisuel ','Histoire des arts','Théâtre','Musique','Arts du cirque','Danse','Arts plastiques'];
 
-let listToDontRepeat = [['Langues et litteratures etrangere: anglais', 
-'Langues et litteratures etrangere: allemand', 'Langues et litteratures etrangere: espagnol',
-'Langues et litteratures etrangere: italien']];
+let listToDontRepeat = [['Langue et littérature étrangère Espagnol', 'Langue et littérature étrangère Allemand', 'Langue et littérature étrangère Anglais','Langue et littérature étrangère Italien'],
+						['Cinéma-audiovisuel ','Histoire des arts','Théâtre','Musique','Arts du cirque','Danse','Arts plastiques']];
 
 let listCheckbox = {};
 
@@ -21,7 +17,7 @@ function createCheckboxInSubjectForm() {
 		cb.type = 'checkbox';
 		cb.name = subject;
 		cb.id = "idCheckbox" + subject;
-		cb.checked = true;
+		cb.checked = false;
 		cb.onclick = updateChoice
 		form.appendChild(cb);
 		listCheckbox[subject] = cb;
@@ -61,7 +57,6 @@ function getChoiceTerminal() {
 			// verify don't repeat
 			for (let iDontRepeat = 0; iDontRepeat < listToDontRepeat.length; iDontRepeat++) {
 				if (choice1 in listToDontRepeat[iDontRepeat] && choice2 in listToDontRepeat[iDontRepeat]) {
-					console.log('oui')
 					_continue = true;
 					break;
 				}
@@ -79,7 +74,6 @@ function getChoiceTerminal() {
 
 			for (let iChoice = 0; iChoice < listChoice.length; iChoice++) {
 				if (listChoice[iChoice].toString() === choice.toString()) {
-					console.log('oui')
 					alreadyIn = true;
 					break;
 				}
@@ -205,7 +199,6 @@ function getChoicePremiere() {
 				}
 
 				if (_continue) {
-					console.log("continue");
 					continue;
 				}
 
@@ -241,6 +234,9 @@ function isIn(value, list) {
 function updateChoice() {
 	let numberChoicePremiere = document.getElementById("premiereNumberChoice");
 	let numberChoiceTerminal = document.getElementById("terminalNumberChoice");
+
+	numberChoicePremiere.innerHTML = '???'
+	numberChoiceTerminal.innerHTML = '???'
 
 	numberChoicePremiere.innerHTML = getChoicePremiere().length;
 	numberChoiceTerminal.innerHTML = getChoiceTerminal().length;
