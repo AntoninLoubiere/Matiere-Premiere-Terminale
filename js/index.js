@@ -17,7 +17,7 @@ function createCheckboxInSubjectForm() {
 		cb.type = 'checkbox';
 		cb.name = subject;
 		cb.id = "idCheckbox" + subject;
-		cb.checked = true;
+		cb.checked = false;
 		cb.onclick = updateChoice
 		form.appendChild(cb);
 		listCheckbox[subject] = cb;
@@ -57,7 +57,6 @@ function getChoiceTerminal() {
 			// verify don't repeat
 			for (let iDontRepeat = 0; iDontRepeat < listToDontRepeat.length; iDontRepeat++) {
 				if (choice1 in listToDontRepeat[iDontRepeat] && choice2 in listToDontRepeat[iDontRepeat]) {
-					console.log('oui')
 					_continue = true;
 					break;
 				}
@@ -75,7 +74,6 @@ function getChoiceTerminal() {
 
 			for (let iChoice = 0; iChoice < listChoice.length; iChoice++) {
 				if (listChoice[iChoice].toString() === choice.toString()) {
-					console.log('oui')
 					alreadyIn = true;
 					break;
 				}
@@ -237,16 +235,8 @@ function updateChoice() {
 	let numberChoicePremiere = document.getElementById("premiereNumberChoice");
 	let numberChoiceTerminal = document.getElementById("terminalNumberChoice");
 
-	if (typeof(Worker) !== "undefined") {
-	    if (typeof(w) == "undefined") {
-	      w = new Worker("demo_workers.js");
-	    }
-    w.onmessage = function(event) {
-      document.getElementById("result").innerHTML = event.data;
-    };
-  } else {
-    document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
-  }
+	numberChoicePremiere.innerHTML = '???'
+	numberChoiceTerminal.innerHTML = '???'
 
 	numberChoicePremiere.innerHTML = getChoicePremiere().length;
 	numberChoiceTerminal.innerHTML = getChoiceTerminal().length;
