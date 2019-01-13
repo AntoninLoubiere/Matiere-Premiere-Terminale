@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 
 	<title>Matières en première et seconde</title>
-	<link rel="stylesheet" href="../css/index.css">
+	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 	<label>Choisissez vos matières:</label>
@@ -15,6 +15,6 @@
 	</form>
 	<hr>
 
-	<script type="text/javascript" src="../js/index.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
