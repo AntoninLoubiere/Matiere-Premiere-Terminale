@@ -1,4 +1,6 @@
 footer {
+	text-align: left;
+	
 	font-style: italic;
 	font-size: 14px;
 }
@@ -8,8 +10,14 @@ hr.light {
 }
 
 .checkboxList {
+	text-align: left;
+
 	column-count: 3;
 	column-gap: 10px;
+}
+
+body {
+	text-align: center;
 }
 
 #listPossibility {

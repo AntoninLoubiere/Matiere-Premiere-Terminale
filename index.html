@@ -12,7 +12,7 @@
 		<!-- add automatly checkbox -->
 	</div>
   
-	<button id="saveButton" onclick="saveButton()">Enregistrer</button>
+	<button id="saveButton" onclick="saveButton()">Enregistrer / Partager</button>
 
 	<hr>
 
@@ -21,28 +21,14 @@
 			Il y a <label id="premiereNumberChoice">???</label> possibilité(s) en première et <label id="terminalNumberChoice">???</label> en terminale !
 		</p>
 
+		Afficher les choix possible pour les: 
+
+		<input type="radio" id="ratioPremiere" name="toShow" checked="true" onclick="updateChoice()">Premières
+		<input type="radio" id="ratioTerminale" name="toShow" onclick="updateChoice()">Terminales
+
 		<hr class="light">
 
 		<div id="listPossibility">
-			<div class="possibility">
-				<p>
-					Choix n°1: <br>
-					<br>
-					1. Math <br>
-					2. Anglais <br>
-					3. Espagnole
-				</p>
-			</div>
-
-			<div class="possibility">
-				<p>
-					Choix n°2: <br>
-					<br>
-					1. Mathématiques <br>
-					2. LCA latin grec <br>
-					3. Langue et littérature étrangère Espagnol
-				</p>
-			</div>
 		</div>
 	</div>
 
