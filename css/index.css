@@ -2,3 +2,43 @@ footer {
 	font-style: italic;
 	font-size: 14px;
 }
+
+hr.light {
+	color: lightgrey;
+}
+
+.checkboxList {
+	column-count: 3;
+	column-gap: 10px;
+}
+
+#listPossibility {
+	text-align: center;
+}
+
+div.possibility {
+	border-radius: 25px;
+
+	background-color: #AFEEEE;
+
+	width: 200px;
+	height: 195px;
+
+	padding: 10px;
+	margin: 3px;
+
+	display: inline-table;
+}
+
+p.possibility {
+	text-align: left;
+	vertical-align: middle;
+}
+
+p.center {
+	text-align: center;
+}
+
+.possibility:hover {
+	background-color: #BFFFEA;
+}
