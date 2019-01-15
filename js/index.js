@@ -9,6 +9,9 @@ let listCheckbox = {};
 
 let listPossibility = document.getElementById("listPossibility");
 
+let ratioPremiere = document.getElementById("ratioPremiere");
+let ratioTerminale = document.getElementById("ratioTerminale");
+
 function findGetParameter(parameterName) {
     var result = null,
         tmp = [];
@@ -33,7 +36,7 @@ function createCheckboxInSubjectForm() {
 		cb.name = subject;
 		cb.id = "idCheckbox" + subject;
 		cb.checked = false;
-		cb.onclick = updateChoice
+		cb.onclick = updateChoice;
 		form.appendChild(cb);
 		listCheckbox[subject] = cb;
 
@@ -105,64 +108,7 @@ function getChoiceTerminal() {
 
 			if (!alreadyIn) {
 				listChoice.push(choice);
-				
-			}
-
-		}
-	}
-
-	return listChoice;
-}
-
-function getChoiceTerminal() {
-
-	listChoice = [];
-
-	listSubjectCheck = [];
-
-	for (var key in listCheckbox) {
-		if (listCheckbox[key].checked)
-			listSubjectCheck.push(key);
-	}
-
-	for (let i1 = 0; i1 < listSubjectCheck.length; i1++) {
-		for (let i2 = 0; i2 < listSubjectCheck.length; i2++) {
-
-			choice1 = listSubjectCheck[i1];
-			choice2 = listSubjectCheck[i2];
-
-			if (choice1 == choice2)
-				continue;
-
-			_continue = false;
-
-			// verify don't repeat
-			for (let iDontRepeat = 0; iDontRepeat < listToDontRepeat.length; iDontRepeat++) {
-				if (isIn(choice1, listToDontRepeat[iDontRepeat]) && isIn(choice2, listToDontRepeat[iDontRepeat])) {
-					_continue = true;
-					break;
-				}
-			}
-
-			if (_continue) {
-				continue;
-			}
-
-			choice = [choice1, choice2];
-
-			choice.sort();
-
-			alreadyIn = false;
-
-			for (let iChoice = 0; iChoice < listChoice.length; iChoice++) {
-				if (listChoice[iChoice].toString() === choice.toString()) {
-					alreadyIn = true;
-					break;
-				}
-			}
-
-			if (!alreadyIn) {
-				listChoice.push(choice);
+				addTerminalePossibility(listChoice.length, choice);
 			}
 
 		}
@@ -257,6 +203,10 @@ function getChoicePremiere() {
 }
 
 function addPremierePossibility(index, listChoice) {
+
+	if (!ratioPremiere.checked)
+		return;
+
 	let possibility = document.createElement('div');
 	listPossibility.appendChild(possibility);
 	possibility.classList.add('possibility');
@@ -274,6 +224,29 @@ function addPremierePossibility(index, listChoice) {
 	possibilityP.appendChild(document.createTextNode("2. " + listChoice[1]));
 	possibilityP.appendChild(document.createElement('br'));
 	possibilityP.appendChild(document.createTextNode("3. " + listChoice[2]));
+
+}
+
+function addTerminalePossibility(index, listChoice) {
+
+	if (!ratioTerminale.checked)
+		return;
+
+	let possibility = document.createElement('div');
+	listPossibility.appendChild(possibility);
+	possibility.classList.add('possibility');
+
+	let textChoice = document.createElement('p')
+	possibility.appendChild(textChoice);
+	textChoice.classList.add('center');
+	textChoice.appendChild(document.createTextNode("Choix n°" + index + ":"));
+
+	let possibilityP = document.createElement('p');
+	possibility.appendChild(possibilityP);
+	possibilityP.classList.add('possibility');
+	possibilityP.appendChild(document.createTextNode("1. " + listChoice[0]));
+	possibilityP.appendChild(document.createElement('br'));
+	possibilityP.appendChild(document.createTextNode("2. " + listChoice[1]));
 
 }
 
