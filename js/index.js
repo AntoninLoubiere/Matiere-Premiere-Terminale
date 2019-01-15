@@ -9,6 +9,19 @@ let listCheckbox = {};
 
 let listPossibility = document.getElementById("listPossibility");
 
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+
 function createCheckboxInSubjectForm() {
 	var form = document.getElementById("chooseSubjectForm");
 
@@ -31,6 +44,15 @@ function createCheckboxInSubjectForm() {
 
 		let br = document.createElement('br')
 		form.appendChild(br)
+	}
+
+	let checkboxAutoChecked = findGetParameter("checkbox");
+	if (checkboxAutoChecked != null) {
+		for (let i = 0; i < checkboxAutoChecked.length; i++) {
+			if (checkboxAutoChecked[i] == '1') {
+				listCheckbox[listSubject[i]].checked = true;
+			}
+		}
 	}
 }
 
@@ -247,8 +269,6 @@ function addPremierePossibility(index, listChoice) {
 	let possibilityP = document.createElement('p');
 	possibility.appendChild(possibilityP);
 	possibilityP.classList.add('possibility');
-	// possibilityP.appendChild(document.createElement('br'));
-	// possibilityP.appendChild(document.createElement('br'));
 	possibilityP.appendChild(document.createTextNode("1. " + listChoice[0]));
 	possibilityP.appendChild(document.createElement('br'));
 	possibilityP.appendChild(document.createTextNode("2. " + listChoice[1]));
@@ -279,6 +299,21 @@ function updateChoice() {
 
 	numberChoicePremiere.innerHTML = getChoicePremiere().length;
 	numberChoiceTerminal.innerHTML = getChoiceTerminal().length;
+}
+
+function saveButton() {
+	let url = "https://antoninloubiere.github.io/Matiere-Premiere-Terminale/?checkbox="
+
+	for (let i = 0; i < listSubject.length; i++) {
+		if (listCheckbox[listSubject[i]].checked) {
+			url += "1"
+		} else {
+			url += "0"
+		}
+	}
+
+	console.log(url)
+	alert("Lien vers cet page:\n" + url);
 }
 
 
